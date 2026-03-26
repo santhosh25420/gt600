@@ -1,0 +1,29 @@
+name: Deploy to VPS
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - closed   # triggers when PR is closed (merged or not)
+
+jobs:
+  deploy:
+    if: github.event.pull_request.merged == true   # only run if merged
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: SSH into VPS and deploy
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: root
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd your-repo
+            git pull origin main
+            docker-compose down
+            docker-compose up -d --build
