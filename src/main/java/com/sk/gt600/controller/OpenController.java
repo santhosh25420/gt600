@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/gt")
 public class OpenController {
 
-    @GetMapping("/open")
+    @GetMapping("/hi")
     public String hi(){
         return "Hi";
     }
