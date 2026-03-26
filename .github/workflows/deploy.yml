@@ -23,7 +23,7 @@ jobs:
           username: root
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd your-repo
+            cd gt600
             git pull origin main
             docker-compose down
             docker-compose up -d --build
