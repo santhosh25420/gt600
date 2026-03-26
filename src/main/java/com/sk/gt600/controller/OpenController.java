@@ -10,6 +10,6 @@ public class OpenController {
 
     @GetMapping("/hi")
     public String hi(){
-        return "Hi";
+        return "I love you jb";
     }
 }
